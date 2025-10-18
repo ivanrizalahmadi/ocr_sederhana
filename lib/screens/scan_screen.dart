@@ -28,7 +28,7 @@ class _ScanScreenState extends State<ScanScreen> {
     try {
       cameras = await availableCameras();
       if (cameras.isEmpty) {
-        print("⚠️ Tidak ada kamera terdeteksi!");
+        print("Tidak ada kamera terdeteksi!");
         return;
       }
 
