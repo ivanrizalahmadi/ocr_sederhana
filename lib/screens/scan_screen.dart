@@ -42,7 +42,7 @@ class _ScanScreenState extends State<ScanScreen> {
         });
       }
     } catch (e) {
-      print("❌ Gagal inisialisasi kamera: $e");
+      print("Gagal inisialisasi kamera: $e");
     }
   }
 
