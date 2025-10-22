@@ -1,8 +1,15 @@
 # ocr_sederhana
 
-A new Flutter project.
 
-## Getting Started
+
+## UJIAN TENGAH SEMESTER (UTS) - PRAKTIKUM
+Mata Kuliah: Pemrograman Mobile - Aplikasi OCR
+Semester: Ganjil Tahun Akademik: 2025/2026
+
+
+
+
+
 
 This project is a starting point for a Flutter application.
 
