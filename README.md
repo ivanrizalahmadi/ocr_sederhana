@@ -34,12 +34,19 @@ Fungsi navigasi menggunakan Navigator.push() tetap dipertahankan untuk berpindah
 - Ketika tombol ditekan, navigasi harus kembali langsung ke HomeScreen meng-
   gunakan Navigator.pushAndRemoveUntil() (atau metode yang setara)
   untuk menghapus semua halaman di atasnya dari stack navigasi.
+
 ![kode 2](image-3.png)
+
 Jangan lupa untuk menambahkan import home_screen
+
 ![import home](image-4.png)
+
 Lalu untuk outputnya adalah sebagai berikut
+
 ![output 1 kamera](image-5.png)
+
 ![output 2 kamera](image-6.png)
+
 fungsi replaceAll('\n', ' ') dihapus agar teks hasil pemindaian ditampilkan sesuai format aslinya, termasuk jeda baris.
 Selain itu, ditambahkan FloatingActionButton dengan ikon home untuk mempermudah pengguna kembali ke halaman utama.
 Tombol ini menggunakan metode Navigator.pushAndRemoveUntil() agar seluruh riwayat halaman sebelumnya dihapus dari navigation stack, sehingga aplikasi langsung kembali ke HomeScreen tanpa menekan tombol back berkali-kali.
@@ -57,6 +64,7 @@ style: TextStyle(color: Colors.white, fontSize: 18)).
 Sebelumnya, hanya menampilkan indikator tanpa teks.
 Kini, latar belakang diatur menjadi warna abu gelap (Colors.grey900) dengan indikator kuning (Colors.yellow) dan teks "Memuat Kamera... Harap tunggu.".
 Perubahan ini membantu pengguna memahami bahwa aplikasi sedang menyiapkan kamera, bukan mengalami gangguan.
+
 ![kode1](image-7.png)
 
 output : 
@@ -69,12 +77,15 @@ output :
 tuk mengubah pesan *error pada SnackBar.
 • Pesan SnackBar harus berbunyi: "Pemindaian Gagal! Periksa Izin Kam-
 era atau coba lagi." (Hilangkan variabel *error ($e)).
+
 ![kode2](image-9.png)
 
 untuk menampilkan output nya saya harus memodifikasi izin kamera terlebih dahulu:
+
 ![izin kamera](image-10.png)
 
 Output:
+
 ![output izin](image-11.png)
 
 Blok catch (e) di fungsi _takePicture() dimodifikasi agar pesan kesalahan ditampilkan lebih ramah dan tidak menampilkan detail teknis.
@@ -82,6 +93,63 @@ Pesan baru pada SnackBar berbunyi:
 
 “Pemindaian Gagal! Periksa Izin Kamera atau coba lagi.”
 Langkah ini membuat aplikasi lebih profesional, karena pengguna mendapatkan pesan yang mudah dimengerti tanpa melihat kode error internal.
+
+
+## Soal 3: Implementasi Plugin Text-to-Speech (TTS)
+# A.Instalasi Plugin :
+• Tambahkan *plugin flutter_tts ke dalam file pubspec.yaml (gunakan versi
+terbaru yang kompatibel).
+
+![pubspec](image-12.png)
+
+• Jalankan flutter pub get.
+
+![pubget](image-13.png)
+
+# B. Konversi Widget dan Inisialisasi :
+• Ubah ResultScreen dari StatelessWidget menjadi **StatefulWidget.
+
+![ubah stateful widget](image-14.png)
+
+• Di initState(), inisialisasi FlutterTts dan atur bahasa pembacaan menjadi
+Bahasa Indonesia.
+
+![atur bahasa](image-15.png)
+
+Kelas ResultScreen diubah dari StatelessWidget menjadi StatefulWidget agar dapat menginisialisasi plugin dan mengatur siklus hidup (lifecycle) TTS.
+Di dalam initState(), plugin diatur menggunakan bahasa Indonesia (id-ID) dengan kecepatan bicara sedang.
+
+• Implementasikan dispose() untuk menghentikan mesin TTS saat halaman
+ditutup.
+
+![dispose](image-16.png)
+
+
+# C. Fungsionalitas Pembacaan :
+• Tambahkan FloatingActionButton kedua di ResultScreen (atau ganti AppBar
+dengan action button) dengan ikon Icons.volume_up.
+
+![ikon button](image-17.png)
+
+• Ketika tombol ditekan, panggil fungsi speak() pada FlutterTts untuk mem-
+bacakan seluruh isi ocrText.
+
+![memanggil _speak](image-18.png)
+
+Tombol IconButton dengan ikon volume_up ditambahkan pada AppBar.
+Saat ditekan, fungsi _speak() dipanggil untuk membacakan teks hasil OCR menggunakan suara.
+
+Setelah memodifikasi file result_screen.dart, saya melakukan pembersihan chache dahulu menggunakan flutter clean  dan flutter pub get di terminal.
+
+![cleaning](image-21.png)
+
+Untuk Output nya adalah sebagai berikut:
+
+![output 1](image-20.png)
+
+![output 2](image-19.png)
+
+Terdengar suara AI seperti di google trasnlate Bahasa Indonesia.
 
 
 
