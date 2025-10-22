@@ -64,6 +64,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   Future<void> _takePicture() async {
     try {
+      //throw Exception('Simulasi error kamera');
       if (_controller == null || !_controller!.value.isInitialized) return;
       final XFile image = await _controller!.takePicture();
 
@@ -79,19 +80,42 @@ class _ScanScreenState extends State<ScanScreen> {
         MaterialPageRoute(builder: (_) => ResultScreen(ocrText: ocrText)),
       );
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error saat ambil gambar: $e')),
-      );
-    }
+  if (!mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text(
+        'Pemindaian Gagal! Periksa Izin Kamera atau coba lagi.',
+        style: TextStyle(color: Colors.white),
+      ),
+      backgroundColor: Colors.redAccent,
+      duration: Duration(seconds: 3),
+    ),
+  );
+}
+
   }
 
   @override
   Widget build(BuildContext context) {
     if (!_isCameraReady || _controller == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+  return Scaffold(
+    backgroundColor: Colors.grey[900],
+    body: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          CircularProgressIndicator(color: Colors.yellow),
+          SizedBox(height: 20),
+          Text(
+            'Memuat Kamera... Harap tunggu.',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 
     return Scaffold(
       appBar: AppBar(title: const Text('Kamera OCR')),
